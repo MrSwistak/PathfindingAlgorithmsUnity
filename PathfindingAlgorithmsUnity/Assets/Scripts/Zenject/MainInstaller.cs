@@ -1,3 +1,4 @@
+using Gameplay;
 using UI;
 
 namespace Zenject
@@ -7,6 +8,7 @@ namespace Zenject
 		public override void InstallBindings()
 		{
 			Container.Bind<PanelManager>().AsSingle().NonLazy();
+			Container.Bind<MapManager>().AsSingle();
 		}
 	}
 }

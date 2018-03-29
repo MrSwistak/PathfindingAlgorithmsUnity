@@ -6,22 +6,24 @@ namespace UI
 	public class BasePanel : MonoBehaviour
 	{
 		public PanelType type;
+		[HideInInspector] internal GameObject panel;
 
-		[Inject] private PanelManager _panelManager;
+		[Inject] internal PanelManager _panelManager;
 
 		private void Awake()
 		{
-			_panelManager.InitPanel(this);	
+			_panelManager.InitPanel(this);
+			panel = this.gameObject.transform.GetChild(0).gameObject;
 		}
 
 		public virtual void ShowPanel()
 		{
-			this.gameObject.SetActive(true);
+			panel.gameObject.SetActive(true);
 		}
 
 		public virtual void HidePanel()
 		{
-			this.gameObject.SetActive(false);
+			panel.gameObject.SetActive(false);
 		}
 	}
 

@@ -14,7 +14,7 @@ namespace UI
 			_panels.Add(panel);
 		}
 
-		public void ShowPanel(PanelType type)
+		public void ChangePanel(PanelType type)
 		{
 			foreach (BasePanel panel in _panels)
 			{
