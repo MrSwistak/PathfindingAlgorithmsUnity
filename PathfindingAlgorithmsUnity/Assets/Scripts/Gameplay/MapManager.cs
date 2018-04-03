@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 namespace Gameplay
 {
@@ -9,45 +10,42 @@ namespace Gameplay
 		public Dictionary<Vector2, TileData> map;
 		private MapController _controller;
 
-		private MapGenerateData _data;
+		public MapData data;
 		public Vector2 startPosition = Vector2.one * -1;
+		public Vector2 endPosition = Vector2.one * -1;
 
 		public void SetMapController(MapController controller)
 		{
 			this._controller = controller;
 		}
 
-		public void GenerateMap(MapGenerateData data)
+		public void GenerateMap(MapData data)
 		{
-			if (data.x_dim < 10 || data.y_dim < 10)
+			if (data.xDim < 10 || data.yDim < 10)
 			{
 				Debug.LogError("wrong map size");
 				return;
 			}
 
-			_data = data;
+			this.data = data;
 			
-			map = _controller.InstantiateMapTiles(_data);
-			UnityEngine.Random.InitState(_data.seed);
+			map = _controller.InstantiateMapTiles(this.data);
+			UnityEngine.Random.InitState(this.data.seed);
 			
 			GenerateObstacles();
 			GenerateStartAndEnd();
-			Debug.Log(startPosition.ToString());			
-		}
-
-		public void InitializeMap()
-		{
 			_controller.InitializeMap();
 		}
 
 		private void GenerateObstacles()
 		{	
-			SetRandomTiles(TileState.Occupied, _data.obstacles_count);
+			SetRandomTiles(TileState.Occupied, data.obstaclesCount);
 		}
 
 		private void GenerateStartAndEnd()
 		{
 			SetRandomTiles(TileState.Path, 2);
+			map[startPosition].edge = Edge.Zero;
 		}
 
 		private void SetRandomTiles(TileState state, int count)
@@ -68,6 +66,8 @@ namespace Gameplay
 					RandomizeObstacle(tile);
 				else if (state == TileState.Path && startPosition == Vector2.one * -1)
 					startPosition = tile.mapPosition;
+				else if (state == TileState.Path && endPosition == Vector2.one * -1)
+					endPosition = tile.mapPosition;
 					
 				settedTiles++;
 			}
@@ -76,8 +76,8 @@ namespace Gameplay
 		private Vector2 RandomTileOnMap()
 		{
 			Vector2 position;
-			var xPos = UnityEngine.Random.Range(0f, (float)_data.x_dim - 1);
-			var yPos = UnityEngine.Random.Range(0f, (float) _data.y_dim - 1);
+			var xPos = UnityEngine.Random.Range(0f, (float)data.xDim - 1);
+			var yPos = UnityEngine.Random.Range(0f, (float) data.yDim - 1);
 
 			var roundedXPos = (int) Math.Round(xPos, 0);
 			var roundedYPos = (int) Math.Round(yPos, 0);
@@ -88,75 +88,60 @@ namespace Gameplay
 		private void RandomizeObstacle(TileData tile)
 		{
 			tile.state = TileState.Occupied;
+			tile.edge = Edge.Zero;
 			//todo: get random obstacle
+		}
+
+		public void GeneratePathway()
+		{
+			var currentTile = endPosition;
+
+			while (currentTile != Vector2.zero)
+			{
+				map[currentTile].state = TileState.Path;
+				var nextTile = MapUtils.GetPreviusTile(currentTile, map);
+				currentTile = nextTile;
+			}
+			InitializeMap();
+		}
+
+		public void ClearPath()
+		{
+			foreach (KeyValuePair<Vector2, TileData> tile in map)
+			{
+				tile.Value.edge = Edge.Zero;
+
+				if (tile.Value.state == TileState.Occupied)
+					continue;
+
+				if (tile.Key == startPosition)
+					continue;
+
+				if (tile.Key == endPosition)
+					continue;
+				
+				tile.Value.state = TileState.Free;
+			}
+			InitializeMap();
 		}
 
 		public void ClearMap()
 		{
 			map.Clear();
-			_data.obstacles_count = 0;
-			_data.seed = 0;
-			_data.x_dim = 0;
-			_data.y_dim = 0;
+			data.saveName = string.Empty;
+			data.obstaclesCount = 0;
+			data.seed = 0;
+			data.xDim = 0;
+			data.yDim = 0;
 			startPosition = Vector2.one * -1;
+			endPosition = Vector2.one * -1;
+			_controller.DestroyMap();
+			InitializeMap();
 		}
-
-		public Vector2 ToVector2(Edge edge)
+		
+		public void InitializeMap()
 		{
-			switch (edge)
-			{
-				case Edge.Up:
-					return Vector2.up;
-				case Edge.Down:
-					return Vector2.down;
-				case Edge.Left:
-					return Vector2.left;
-				case Edge.Right:
-					return Vector2.right;
-				default:
-					return Vector2.zero;
-			}
+			_controller.InitializeMap();
 		}
-
-		public Edge ToEdge(Vector2 vec2)
-		{
-			if (vec2 == Vector2.up)
-				return Edge.Up;
-			else if (vec2 == Vector2.down)
-				return Edge.Down;
-			else if (vec2 == Vector2.left)
-				return Edge.Left;
-			else if (vec2 == Vector2.right)
-				return Edge.Right;
-			else
-			{
-				Debug.LogError("wrong edge");
-				return Edge.Down;
-			}
-		}
-	}
-
-
-	public struct MapGenerateData
-	{
-		public int x_dim;
-		public int y_dim;
-		public int obstacles_count;
-		public int seed;
-	}
-
-	public enum TileState
-	{
-		Free = 0,
-		Occupied = 1,
-		Path = 2,
-	}
-	
-	public enum Edge
-	{
-		Up = 0,
-		Down = 1,
-		Left = 2,
-		Right = 3,
 	}
 }

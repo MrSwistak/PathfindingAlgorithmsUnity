@@ -1,5 +1,4 @@
-﻿using System;
-using Gameplay;
+﻿using Gameplay;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -20,7 +19,7 @@ namespace UI
 		[SerializeField] private Text obstaclesCountText;
 		[SerializeField] private Text seedText;
 
-		private MapGenerateData data;
+		private MapData _data;
 
 		public void SliderUpdate()
 		{
@@ -32,12 +31,12 @@ namespace UI
 
 		public void GoToGameplay()
 		{	
-			data.x_dim = (int)size_x.value;
-			data.y_dim = (int)size_y.value;
-			data.obstacles_count = (int)obstaclesCount.value;
-			data.seed = (int)seed.value;
+			_data.xDim = (int)size_x.value;
+			_data.yDim = (int)size_y.value;
+			_data.obstaclesCount = (int)obstaclesCount.value;
+			_data.seed = (int)seed.value;
 			
-			_mapManager.GenerateMap(data);
+			_mapManager.GenerateMap(_data);
 			
 			_panelManager.ChangePanel(PanelType.Gameplay);
 		}

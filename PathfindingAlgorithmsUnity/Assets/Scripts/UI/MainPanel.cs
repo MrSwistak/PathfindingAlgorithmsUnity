@@ -8,6 +8,11 @@ namespace UI
 		{
 			_panelManager.ChangePanel(PanelType.SetUpMap);
 		}
+
+		public void GoToLoadPanel()
+		{
+			_panelManager.ChangePanel(PanelType.LoadMap);
+		}
 		
 	}
 }

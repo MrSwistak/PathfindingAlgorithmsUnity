@@ -10,7 +10,7 @@ namespace UI
 
 		[Inject] internal PanelManager _panelManager;
 
-		private void Awake()
+		private void Start()
 		{
 			_panelManager.InitPanel(this);
 			panel = this.gameObject.transform.GetChild(0).gameObject;
@@ -24,6 +24,11 @@ namespace UI
 		public virtual void HidePanel()
 		{
 			panel.gameObject.SetActive(false);
+		}
+
+		public virtual void BackToMenu()
+		{
+			_panelManager.ChangePanel(PanelType.Main);
 		}
 	}
 

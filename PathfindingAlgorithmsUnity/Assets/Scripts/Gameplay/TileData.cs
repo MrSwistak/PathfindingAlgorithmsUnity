@@ -36,7 +36,12 @@ namespace Gameplay
 						_meshRenderer.material = _pathTileColor;
 						break;
 			}
-
+			
+			if(edge == Edge.Zero)
+				arrow.SetActive(false);
+			else
+				arrow.SetActive(true);
+			
 			switch (edge)
 			{
 				case Edge.Up:
