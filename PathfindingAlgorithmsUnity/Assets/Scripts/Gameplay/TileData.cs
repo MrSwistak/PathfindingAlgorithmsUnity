@@ -5,10 +5,10 @@ namespace Gameplay
 {
 	public class TileData : MonoBehaviour
 	{
-		public Vector2 mapPosition;
-		public TileState state;
+		[HideInInspector] public Vector2 mapPosition;
+		[HideInInspector] public TileState state;
 
-		public Edge edge;
+		[HideInInspector] public Edge edge;
 		public GameObject arrow;
 
 		[SerializeField] private Material _freeTileColor;

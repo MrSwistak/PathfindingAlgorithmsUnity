@@ -189,7 +189,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 22007956}
-  - component: {fileID: 22007960}
   - component: {fileID: 22007959}
   - component: {fileID: 22007958}
   - component: {fileID: 22007957}
@@ -304,17 +303,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 22007955}
---- !u!114 &22007960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 22007955}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cd63dea1c9194c36bead98e90cc52a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &37391029
 GameObject:
   m_ObjectHideFlags: 0
@@ -797,7 +785,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 186079968}
-  - component: {fileID: 186079972}
   - component: {fileID: 186079971}
   - component: {fileID: 186079970}
   - component: {fileID: 186079969}
@@ -912,17 +899,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 186079967}
---- !u!114 &186079972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 186079967}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cd63dea1c9194c36bead98e90cc52a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &224475191
 GameObject:
   m_ObjectHideFlags: 0
@@ -2089,7 +2065,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: save map
+  m_Text: back to menu
 --- !u!222 &552812899
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2600,7 +2576,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 791914877}
-  - component: {fileID: 791914881}
   - component: {fileID: 791914880}
   - component: {fileID: 791914879}
   - component: {fileID: 791914878}
@@ -2715,17 +2690,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 791914876}
---- !u!114 &791914881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 791914876}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cd63dea1c9194c36bead98e90cc52a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &794836936
 GameObject:
   m_ObjectHideFlags: 0
@@ -3874,7 +3838,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1188499160}
-  - component: {fileID: 1188499164}
   - component: {fileID: 1188499163}
   - component: {fileID: 1188499162}
   - component: {fileID: 1188499161}
@@ -3989,17 +3952,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1188499159}
---- !u!114 &1188499164
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1188499159}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cd63dea1c9194c36bead98e90cc52a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1204557123
 GameObject:
   m_ObjectHideFlags: 0
@@ -6121,7 +6073,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 2047060283}
-  - component: {fileID: 2047060287}
   - component: {fileID: 2047060286}
   - component: {fileID: 2047060285}
   - component: {fileID: 2047060284}
@@ -6236,17 +6187,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2047060282}
---- !u!114 &2047060287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2047060282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cd63dea1c9194c36bead98e90cc52a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2064778817
 GameObject:
   m_ObjectHideFlags: 0
