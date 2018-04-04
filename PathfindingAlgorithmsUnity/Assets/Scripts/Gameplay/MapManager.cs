@@ -7,12 +7,15 @@ namespace Gameplay
 {
 	public class MapManager
 	{
+		[Inject] private ObstacleRandomizer _obstacleRandomizer;
+		
 		public Dictionary<Vector2, TileData> map;
 		private MapController _controller;
 
 		public MapData data;
 		public Vector2 startPosition = Vector2.one * -1;
 		public Vector2 endPosition = Vector2.one * -1;
+
 
 		public void SetMapController(MapController controller)
 		{
@@ -87,9 +90,7 @@ namespace Gameplay
 
 		private void RandomizeObstacle(TileData tile)
 		{
-			tile.state = TileState.Occupied;
-			tile.edge = Edge.Zero;
-			//todo: get random obstacle
+			_obstacleRandomizer.GenerateObstacle(tile, map);			
 		}
 
 		public void GeneratePathway()

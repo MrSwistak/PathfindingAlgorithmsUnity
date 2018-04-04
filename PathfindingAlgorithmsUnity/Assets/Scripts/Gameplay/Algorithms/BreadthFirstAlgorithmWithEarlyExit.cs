@@ -20,8 +20,6 @@ namespace Gameplay
 			
 			_visited.Add(mapManager.startPosition);
 
-			var counter = 0;
-
 			while (_first.Count > 0)
 			{
 				var current = _first.Dequeue();
@@ -42,11 +40,9 @@ namespace Gameplay
 					
 					_first.Enqueue(next);
 					_visited.Add(next);
-					counter++;
 				}
 			}
 			
-			Debug.Log(counter);
 			mapManager.GeneratePathway();
 		}
 	}

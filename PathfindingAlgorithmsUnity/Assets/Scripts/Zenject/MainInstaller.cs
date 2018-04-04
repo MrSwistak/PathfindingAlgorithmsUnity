@@ -9,6 +9,7 @@ namespace Zenject
 		{
 			Container.Bind<PanelManager>().AsSingle().NonLazy();
 			Container.Bind<MapManager>().AsSingle();
+			Container.Bind<ObstacleRandomizer>().AsTransient();
 		}
 	}
 }
